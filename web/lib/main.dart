@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:web/features/login/presentation/login_page.dart';
 
+import 'core/di/locator.dart';
+
 void main() {
+  configureDependencies();
   runApp(const Web());
 }
 

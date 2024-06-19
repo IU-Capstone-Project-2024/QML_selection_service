@@ -37,7 +37,6 @@ class LoginForm extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 _SignupButton(),
                 SizedBox(width: 20,),
                 _EnterButton(),
@@ -61,8 +60,9 @@ class _EmailInput extends StatelessWidget {
         width: 300,
         decoration: const BoxDecoration(color: Colors.blue),
         child: TextFormField(
+        onChanged: (email) => context.read<LoginBloc>().add(LoginEmailChanged(email: email)),
           autofocus: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Email',
             labelStyle: TextStyle(color: Colors.white),
           ),
@@ -84,7 +84,8 @@ class _PasswordInput extends StatelessWidget {
         width: 300,
         decoration: const BoxDecoration(color: Colors.blue),
         child: TextFormField(
-          decoration: InputDecoration(
+          onChanged:(password) =>  context.read<LoginBloc>().add(LoginPasswordChanged(password: password)),
+          decoration: const InputDecoration(
             labelText: 'Password',
             labelStyle: TextStyle(color: Colors.white),
           ),
@@ -104,14 +105,16 @@ class _EnterButton extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) => ElevatedButton(
         onPressed: () {
-          context.read<LoginBloc>().add(LoginWithEmail());
+          if (state.state != InputState.inProgress) {
+            context.read<LoginBloc>().add(LoginWithEmail());
+          }
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.lightGreenAccent,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
-          minimumSize: const Size(150, 50),
+          minimumSize: const Size(150,60),
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
           textStyle: const TextStyle(fontSize: 20),
         ),
@@ -119,6 +122,7 @@ class _EnterButton extends StatelessWidget {
             ? const Text('Enter')
             : const CircularProgressIndicator(
                 color: Colors.white,
+
               ),
       ),
     );
@@ -137,7 +141,7 @@ class _SignupButton extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        minimumSize: const Size(150, 50),
+        minimumSize: const Size(150, 60),
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         textStyle: const TextStyle(fontSize: 20),
       ),
