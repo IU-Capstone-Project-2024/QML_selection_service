@@ -61,5 +61,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'qml-selection-service.appspot.com',
     measurementId: 'G-VL9GHXZBJQ',
   );
-
 }

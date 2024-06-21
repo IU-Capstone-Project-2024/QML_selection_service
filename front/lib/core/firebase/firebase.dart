@@ -15,6 +15,3 @@ abstract class RegisterFirebaseFirestore {
       ..settings = const Settings(persistenceEnabled: true);
   }
 }
-
-
-

@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:front/features/login/presentation/login_page.dart';
-
 import 'core/di/locator.dart';
+import 'core/routing/app_router.dart';
 import 'firebase_options.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -19,13 +20,13 @@ class Web extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
     );
   }
 }
