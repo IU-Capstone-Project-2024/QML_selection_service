@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:web/common/enums/state.dart';
+import 'package:front/common/enums/state.dart';
 
 part 'login_bloc.freezed.dart';
 

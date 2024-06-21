@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:web/features/login/presentation/login_form.dart';
+import 'package:front/features/login/presentation/login_form.dart';
 
-import 'package:web/core/di/di_exports.dart';
+import 'package:front/core/di/di_exports.dart';
 import 'bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

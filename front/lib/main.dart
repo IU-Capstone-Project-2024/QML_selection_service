@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:web/features/login/presentation/login_page.dart';
+import 'package:front/features/login/presentation/login_page.dart';
 
 import 'core/di/locator.dart';
 import 'firebase_options.dart';
