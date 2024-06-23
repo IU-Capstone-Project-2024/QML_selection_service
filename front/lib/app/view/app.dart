@@ -26,7 +26,7 @@ class App extends StatelessWidget {
         },
         child: MaterialApp.router(
           routerConfig: AppRouter.router,
-          title: 'Flutter Demo',
+          title: 'QML Selection Service',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
