@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:front/app/bloc/app_bloc.dart';
 import 'package:front/core/routing/navigation.dart';
 import '../../../../common/enums/state.dart';
 
@@ -10,42 +11,55 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 500,
-        width: 500,
-        color: Colors.grey,
-        child: const Column(
-          children: [
-            SizedBox(
-              height: 70,
-            ),
-            Text(
-              'Sign In',
-              style: TextStyle(fontSize: 60),
-            ),
-            SizedBox(
-              height: 90,
-            ),
-            _EmailInput(),
-            SizedBox(
-              height: 30,
-            ),
-            _PasswordInput(),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _SignupButton(),
-                SizedBox(
-                  width: 20,
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if (state.state == InputState.successful) {
+          context.read<AppBloc>().add(
+                CreateUser(
+                  email: state.email,
+                  password: state.password,
+                  id: '',
                 ),
-                _EnterButton(),
-              ],
-            ),
-          ],
+              );
+        }
+      },
+      child: Center(
+        child: Container(
+          height: 500,
+          width: 500,
+          color: Colors.grey,
+          child: const Column(
+            children: [
+              SizedBox(
+                height: 70,
+              ),
+              Text(
+                'Sign In',
+                style: TextStyle(fontSize: 60),
+              ),
+              SizedBox(
+                height: 90,
+              ),
+              _EmailInput(),
+              SizedBox(
+                height: 30,
+              ),
+              _PasswordInput(),
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _SignupButton(),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  _EnterButton(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

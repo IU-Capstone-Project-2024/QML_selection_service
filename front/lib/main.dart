@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'app/view/app.dart';
 import 'core/di/locator.dart';
 import 'core/routing/app_router.dart';
 import 'firebase_options.dart';
@@ -12,21 +13,5 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureDependencies();
-  runApp(const Web());
-}
-
-class Web extends StatelessWidget {
-  const Web({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-    );
-  }
+  runApp(const App());
 }

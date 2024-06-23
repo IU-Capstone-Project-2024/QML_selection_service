@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front/core/routing/navigation.dart';
-import '../../common/enums/state.dart';
+import 'package:front/common/enums/state.dart';
 import 'presentation.dart';
 
 class SignupForm extends StatelessWidget {

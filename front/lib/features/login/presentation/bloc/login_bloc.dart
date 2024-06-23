@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:front/common/enums/state.dart';
 
+import '../../../authentication/domain/models/exceptions.dart';
 import '../../../authentication/domain/repository/repository.dart';
 
 part 'login_bloc.freezed.dart';
@@ -35,10 +36,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(state.copyWith(password: event.password));
   }
 
-  void _onLoginWithEmail(
+  Future<void> _onLoginWithEmail(
     LoginWithEmail event,
     Emitter<LoginState> emit,
-  ) {
+  ) async {
     emit(state.copyWith(state: InputState.inProgress));
+    try {
+      await _authenticationRepository.loginWithEmailAndPassword(
+        email: state.email,
+        password: state.password,
+      );
+      emit(state.copyWith(state: InputState.successful));
+    } on LogInWithEmailAndPasswordFailure catch (e) {
+      emit(
+        state.copyWith(
+          state: InputState.error,
+        ),
+      );
+    } catch (_) {
+      emit(state.copyWith(state: InputState.error));
+    }
   }
 }

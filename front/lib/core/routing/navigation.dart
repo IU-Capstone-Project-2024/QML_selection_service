@@ -8,6 +8,10 @@ extension NavigationManager on BuildContext {
     go('/login');
   }
 
+  void goToHomePage() {
+    go('/home');
+  }
+
   void goToSignupPage() {
     _openInNewTab('/login/signup');
   }

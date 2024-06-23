@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import 'package:front/common/enums/state.dart';
 
-import '../../authentication/domain/repository/repository.dart';
+import 'package:front/features/authentication/domain/repository/repository.dart';
 
 part 'signup_event.dart';
 
