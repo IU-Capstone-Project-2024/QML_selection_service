@@ -27,7 +27,7 @@ class LoginForm extends StatelessWidget {
         child: Container(
           height: 500,
           width: 500,
-          color: Colors.grey,
+          color: Colors.white.withOpacity(0.3),
           child: const Column(
             children: [
               SizedBox(
