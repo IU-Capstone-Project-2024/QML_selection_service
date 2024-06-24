@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/features/reports/presentation/reports_form.dart';
 
 import '../../../common/background/background.dart';
 
@@ -11,6 +12,7 @@ class ReportsPage extends StatelessWidget {
       body: Stack(
         children: [
           GradientBackground(),
+          ReportsForm(),
         ],
       ),
     );
