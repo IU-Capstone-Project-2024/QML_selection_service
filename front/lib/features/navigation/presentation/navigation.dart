@@ -16,7 +16,11 @@ class Navigation extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           bottom: const TabBar(
+            indicatorColor: Colors.white,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
             tabs: [
               Tab(
                 text: 'Home',
