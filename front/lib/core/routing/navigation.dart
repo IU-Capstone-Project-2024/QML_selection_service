@@ -22,9 +22,9 @@ extension NavigationManager on BuildContext {
 
   Future<void> _openInNewTab(String url) async {
     final uri = Uri.base.replace(path: url);
-    if (await canLaunch(uri.toString())) {
-      await launch(
-        uri.toString(),
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(
+        uri,
         webOnlyWindowName: '_blank',
       );
     } else {
