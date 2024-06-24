@@ -43,11 +43,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(state.copyWith(state: InputState.inProgress));
     try {
-      await _authenticationRepository.loginWithEmailAndPassword(
+      var id = await _authenticationRepository.loginWithEmailAndPassword(
         email: state.email,
         password: state.password,
       );
-      emit(state.copyWith(state: InputState.successful));
+      emit(
+        state.copyWith(
+          state: InputState.successful,
+          id: id,
+        ),
+      );
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(

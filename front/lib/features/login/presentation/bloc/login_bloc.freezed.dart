@@ -20,6 +20,7 @@ mixin _$LoginState {
   String get password => throw _privateConstructorUsedError;
   InputState get state => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {String email, String password, InputState state, String errorMessage});
+      {String email,
+      String password,
+      InputState state,
+      String errorMessage,
+      String id});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? password = null,
     Object? state = null,
     Object? errorMessage = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -71,6 +77,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -84,7 +94,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email, String password, InputState state, String errorMessage});
+      {String email,
+      String password,
+      InputState state,
+      String errorMessage,
+      String id});
 }
 
 /// @nodoc
@@ -102,6 +116,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? state = null,
     Object? errorMessage = null,
+    Object? id = null,
   }) {
     return _then(_$LoginStateImpl(
       email: null == email
@@ -120,6 +135,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -131,7 +150,8 @@ class _$LoginStateImpl implements _LoginState {
       {this.email = '',
       this.password = '',
       this.state = InputState.initial,
-      this.errorMessage = 'Unknown error'});
+      this.errorMessage = 'Unknown error',
+      this.id = ''});
 
   @override
   @JsonKey()
@@ -145,10 +165,13 @@ class _$LoginStateImpl implements _LoginState {
   @override
   @JsonKey()
   final String errorMessage;
+  @override
+  @JsonKey()
+  final String id;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, state: $state, errorMessage: $errorMessage)';
+    return 'LoginState(email: $email, password: $password, state: $state, errorMessage: $errorMessage, id: $id)';
   }
 
   @override
@@ -161,12 +184,13 @@ class _$LoginStateImpl implements _LoginState {
                 other.password == password) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, password, state, errorMessage);
+      Object.hash(runtimeType, email, password, state, errorMessage, id);
 
   @JsonKey(ignore: true)
   @override
@@ -180,7 +204,8 @@ abstract class _LoginState implements LoginState {
       {final String email,
       final String password,
       final InputState state,
-      final String errorMessage}) = _$LoginStateImpl;
+      final String errorMessage,
+      final String id}) = _$LoginStateImpl;
 
   @override
   String get email;
@@ -190,6 +215,8 @@ abstract class _LoginState implements LoginState {
   InputState get state;
   @override
   String get errorMessage;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

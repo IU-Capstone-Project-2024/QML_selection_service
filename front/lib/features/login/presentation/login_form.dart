@@ -18,7 +18,7 @@ class LoginForm extends StatelessWidget {
                 CreateUser(
                   email: state.email,
                   password: state.password,
-                  id: '',
+                  id: state.id,
                 ),
               );
         } else if (state.state == InputState.error) {

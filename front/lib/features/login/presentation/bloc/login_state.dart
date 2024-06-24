@@ -7,5 +7,6 @@ class LoginState with _$LoginState {
     @Default('') String password,
     @Default(InputState.initial) InputState state,
     @Default('Unknown error') String errorMessage,
+    @Default('') String id,
   }) = _LoginState;
 }
