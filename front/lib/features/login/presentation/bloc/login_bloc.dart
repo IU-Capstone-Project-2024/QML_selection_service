@@ -51,6 +51,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(
         state.copyWith(
           state: InputState.error,
+          errorMessage: e.message,
         ),
       );
     } catch (_) {
