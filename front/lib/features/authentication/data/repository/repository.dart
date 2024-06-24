@@ -17,7 +17,8 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   @override
   Future<void> signUp({required String email, required String password}) async {
     try {
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -34,7 +35,8 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
     required String password,
   }) async {
     try {
-      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
