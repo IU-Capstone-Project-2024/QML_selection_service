@@ -21,6 +21,15 @@ class LoginForm extends StatelessWidget {
                   id: '',
                 ),
               );
+        } else if (state.state == InputState.error) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage),
+              ),
+            );
+          context.read<LoginBloc>().add(LoginInitial());
         }
       },
       child: Center(

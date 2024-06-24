@@ -131,7 +131,7 @@ class _$LoginStateImpl implements _LoginState {
       {this.email = '',
       this.password = '',
       this.state = InputState.initial,
-      this.errorMessage = ''});
+      this.errorMessage = 'Unknown error'});
 
   @override
   @JsonKey()

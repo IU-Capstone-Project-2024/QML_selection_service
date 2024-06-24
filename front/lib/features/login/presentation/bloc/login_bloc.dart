@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginWithEmail>(_onLoginWithEmail);
     on<LoginEmailChanged>(_onLoginEmailChanged);
     on<LoginPasswordChanged>(_onLoginPasswordChanged);
+    on<LoginInitial>(_onLoginInitial);
   }
 
   final AuthenticationRepository _authenticationRepository;
@@ -55,7 +56,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
     } catch (_) {
-      emit(state.copyWith(state: InputState.error));
+      emit(
+        state.copyWith(
+          state: InputState.error,
+          errorMessage: 'Unknown error',
+        ),
+      );
     }
+  }
+
+  void _onLoginInitial(
+    LoginInitial event,
+    Emitter<LoginState> emit,
+  ) {
+    emit(
+      state.copyWith(state: InputState.initial, errorMessage: 'Unknown error'),
+    );
   }
 }

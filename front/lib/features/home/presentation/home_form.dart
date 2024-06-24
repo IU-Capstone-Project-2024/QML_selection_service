@@ -15,7 +15,14 @@ class HomeForm extends StatelessWidget {
           ),
           _Description(),
           const SizedBox(
-            height: 50,
+            height: 15,
+          ),
+          const Text(
+            'Read the instruction and try our app',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           _TryButton(
             tabController: controller,
@@ -33,6 +40,16 @@ class _Description extends StatelessWidget {
       width: 500,
       height: 500,
       color: Colors.white.withOpacity(0.3),
+      child: const Center(
+        child: Column(
+          children: [
+            Text(
+              'Description',
+              style: TextStyle(fontSize: 30),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -45,10 +62,16 @@ class _TryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ButtonStyle(
+        minimumSize: WidgetStateProperty.all<Size>(const Size(200, 50)),
+      ),
       onPressed: () {
         moveToThirdTab();
       },
-      child: const Text('Try'),
+      child: const Text(
+        'Try',
+        style: TextStyle(fontSize: 20),
+      ),
     );
   }
 

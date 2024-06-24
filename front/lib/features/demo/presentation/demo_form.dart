@@ -30,6 +30,16 @@ class _Instruction extends StatelessWidget {
       width: 500,
       height: 500,
       color: Colors.white.withOpacity(0.3),
+      child: const Center(
+        child: Column(
+          children: [
+            Text(
+              'Instruction',
+              style: TextStyle(fontSize: 30),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -38,6 +48,9 @@ class _ImportButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ButtonStyle(
+        minimumSize: WidgetStateProperty.all<Size>(const Size(200, 50)),
+      ),
       onPressed: () {
         peakFile();
       },
