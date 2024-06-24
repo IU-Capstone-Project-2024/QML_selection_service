@@ -46,13 +46,13 @@ class _TryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        moveToSecondTab();
+        moveToThirdTab();
       },
-      child: Text('Try'),
+      child: const Text('Try'),
     );
   }
 
-  void moveToSecondTab() {
-    tabController.animateTo(1);
+  void moveToThirdTab() {
+    tabController.animateTo(2);
   }
 }

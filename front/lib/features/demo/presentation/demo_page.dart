@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/features/demo/presentation/demo_form.dart';
 import '../../../common/background/background.dart';
 
 class DemoPage extends StatelessWidget {
@@ -10,6 +11,7 @@ class DemoPage extends StatelessWidget {
       body: Stack(
         children: [
           GradientBackground(),
+          DemoForm(),
         ],
       ),
     );

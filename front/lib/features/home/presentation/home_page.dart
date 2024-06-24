@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   final TabController controller;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Stack(
         children: [
           const GradientBackground(),

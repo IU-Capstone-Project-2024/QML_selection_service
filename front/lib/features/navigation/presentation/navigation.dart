@@ -12,7 +12,8 @@ class Navigation extends StatefulWidget {
   NavigationState createState() => NavigationState();
 }
 
-class NavigationState extends State<Navigation> with SingleTickerProviderStateMixin {
+class NavigationState extends State<Navigation>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -56,7 +57,9 @@ class NavigationState extends State<Navigation> with SingleTickerProviderStateMi
         body: TabBarView(
           controller: _tabController,
           children: [
-            HomePage(controller: _tabController,),
+            HomePage(
+              controller: _tabController,
+            ),
             const ReportsPage(),
             const DemoPage(),
             const PriceListPage(),
