@@ -17,8 +17,10 @@ class AppRouter {
         builder: (context, state) => const SignupPage(),
       ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) => const Navigation(),
+        path: '/home/:id',
+        builder: (context, state) {
+          return const Navigation();
+        },
       ),
     ],
   );

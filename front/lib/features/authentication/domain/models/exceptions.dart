@@ -1,7 +1,7 @@
 /// Thrown during the sign up process is a failure occurs.
 class SignUpWithEmailAndPasswordFailure implements Exception {
   const SignUpWithEmailAndPasswordFailure([
-    this.message = 'An unknown exception occurred.',
+    this.message = 'Use correct email and password',
   ]);
 
   /// Create an authenticated message
@@ -42,7 +42,7 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
 /// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/signInWithEmailAndPassword.html
 class LogInWithEmailAndPasswordFailure implements Exception {
   const LogInWithEmailAndPasswordFailure([
-    this.message = 'An unknown exception occurred.',
+    this.message = 'Use correct email and password',
   ]);
 
   /// Create an authentication message

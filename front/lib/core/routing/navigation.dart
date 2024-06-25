@@ -8,8 +8,8 @@ extension NavigationManager on BuildContext {
     go('/login');
   }
 
-  void goToHomePage() {
-    go('/home');
+  void goToHomePage(String id) {
+    go('/home/$id');
   }
 
   void goToSignupPage() {

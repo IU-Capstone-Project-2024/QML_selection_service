@@ -11,7 +11,9 @@ class DemoPage extends StatelessWidget {
       body: Stack(
         children: [
           GradientBackground(),
-          DemoForm(),
+          SingleChildScrollView(
+            child: DemoForm(),
+          ),
         ],
       ),
     );

@@ -20,7 +20,16 @@ class SignupPage extends StatelessWidget {
         child: const Stack(
           children: [
             GradientBackground(),
-            SignupForm(),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  SignupForm(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

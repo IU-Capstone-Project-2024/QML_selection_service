@@ -18,7 +18,16 @@ class LoginPage extends StatelessWidget {
           const GradientBackground(),
           BlocProvider<LoginBloc>(
             create: (BuildContext context) => getIt<LoginBloc>(),
-            child: const LoginForm(),
+            child: const SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  LoginForm(),
+                ],
+              ),
+            ),
           ),
         ],
       ),

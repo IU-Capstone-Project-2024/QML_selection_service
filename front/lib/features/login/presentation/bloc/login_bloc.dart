@@ -64,7 +64,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(
         state.copyWith(
           state: InputState.error,
-          errorMessage: 'Unknown error',
+          errorMessage: 'Use correct email and password',
         ),
       );
     }
@@ -75,7 +75,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) {
     emit(
-      state.copyWith(state: InputState.initial, errorMessage: 'Unknown error'),
+      state.copyWith(
+        state: InputState.initial,
+        errorMessage: 'Use correct email and password',
+      ),
     );
   }
 }

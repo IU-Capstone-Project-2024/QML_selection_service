@@ -150,7 +150,7 @@ class _$LoginStateImpl implements _LoginState {
       {this.email = '',
       this.password = '',
       this.state = InputState.initial,
-      this.errorMessage = 'Unknown error',
+      this.errorMessage = 'Use correct email and password',
       this.id = ''});
 
   @override

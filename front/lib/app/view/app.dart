@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       child: BlocListener<AppBloc, AppState>(
         listener: (context, state) {
           if (state.isVerified) {
-            AppRouter.router.go('/home');
+            AppRouter.router.go('/home/${state.id}');
           } else {
             AppRouter.router.go('/login');
           }
