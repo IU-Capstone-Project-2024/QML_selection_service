@@ -1,0 +1,56 @@
+name: Frontend
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'front/**'
+    branches: [ "main" ]
+  pull_request:
+    paths:
+      - 'front/**'
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: VechkanovVV/front-qml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: cd frontend && dart pub get
+
+      - name: Verify formatting
+        run: cd frontend && dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: cd frontend && dart analyze --fatal-infos
+
+      - name: Build Web
+        run: cd frontend && flutter build web --release
