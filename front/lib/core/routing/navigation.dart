@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 extension NavigationManager on BuildContext {

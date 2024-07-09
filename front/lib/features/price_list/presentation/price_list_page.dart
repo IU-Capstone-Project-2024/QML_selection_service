@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/features/price_list/presentation/price_list_form.dart';
 
 import '../../../common/background/background.dart';
 
@@ -11,6 +12,7 @@ class PriceListPage extends StatelessWidget {
       body: Stack(
         children: [
           GradientBackground(),
+          PriceListForm(),
         ],
       ),
     );
