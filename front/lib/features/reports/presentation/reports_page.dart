@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../common/background/background.dart';
+import '../../../common/counter/counter.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({super.key});
@@ -10,6 +11,7 @@ class ReportsPage extends StatelessWidget {
       body: Stack(
         children: [
           GradientBackground(),
+          Counter(),
         ],
       ),
     );

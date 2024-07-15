@@ -20,6 +20,7 @@ mixin _$AppState {
   String get password => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
+  int get counter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({String email, String password, String id, bool isVerified});
+  $Res call(
+      {String email, String password, String id, bool isVerified, int counter});
 }
 
 /// @nodoc
@@ -51,6 +53,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? password = null,
     Object? id = null,
     Object? isVerified = null,
+    Object? counter = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -69,6 +72,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -81,7 +88,8 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, String id, bool isVerified});
+  $Res call(
+      {String email, String password, String id, bool isVerified, int counter});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? id = null,
     Object? isVerified = null,
+    Object? counter = null,
   }) {
     return _then(_$AppStateImpl(
       email: null == email
@@ -117,6 +126,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -128,7 +141,8 @@ class _$AppStateImpl implements _AppState {
       {this.email = '',
       this.password = '',
       this.id = '',
-      this.isVerified = false});
+      this.isVerified = false,
+      this.counter = 0});
 
   @override
   @JsonKey()
@@ -142,10 +156,13 @@ class _$AppStateImpl implements _AppState {
   @override
   @JsonKey()
   final bool isVerified;
+  @override
+  @JsonKey()
+  final int counter;
 
   @override
   String toString() {
-    return 'AppState(email: $email, password: $password, id: $id, isVerified: $isVerified)';
+    return 'AppState(email: $email, password: $password, id: $id, isVerified: $isVerified, counter: $counter)';
   }
 
   @override
@@ -158,11 +175,13 @@ class _$AppStateImpl implements _AppState {
                 other.password == password) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.isVerified, isVerified) ||
-                other.isVerified == isVerified));
+                other.isVerified == isVerified) &&
+            (identical(other.counter, counter) || other.counter == counter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, id, isVerified);
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, id, isVerified, counter);
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +195,8 @@ abstract class _AppState implements AppState {
       {final String email,
       final String password,
       final String id,
-      final bool isVerified}) = _$AppStateImpl;
+      final bool isVerified,
+      final int counter}) = _$AppStateImpl;
 
   @override
   String get email;
@@ -186,6 +206,8 @@ abstract class _AppState implements AppState {
   String get id;
   @override
   bool get isVerified;
+  @override
+  int get counter;
   @override
   @JsonKey(ignore: true)
   _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>

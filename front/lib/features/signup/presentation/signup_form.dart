@@ -65,8 +65,8 @@ class _NameInput extends StatelessWidget {
         decoration: const BoxDecoration(color: Colors.blue),
         child: TextFormField(
           onChanged: (email) => context.read<SignupBloc>().add(
-            SignupEmailChanged(email: email),
-          ),
+                SignupEmailChanged(email: email),
+              ),
           autofocus: true,
           decoration: const InputDecoration(
             labelText: 'Name',
