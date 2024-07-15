@@ -28,7 +28,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'name': 'super',
+          'name' : 'super',
           'email': email,
           'password': password,
         }),

@@ -13,13 +13,3 @@ class CreateUser extends AppEvent {
   final String password;
   final String id;
 }
-
-class SetAmount extends AppEvent {
-  final int count;
-  SetAmount({
-    required this.count,
-  });
-}
-
-class MakeAttempt extends AppEvent {}
-class Logout extends AppEvent{}

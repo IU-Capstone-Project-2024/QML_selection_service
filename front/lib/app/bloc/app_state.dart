@@ -7,6 +7,5 @@ class AppState with _$AppState {
     @Default('') String password,
     @Default('') String id,
     @Default(false) bool isVerified,
-    @Default(0) int counter,
   }) = _AppState;
 }

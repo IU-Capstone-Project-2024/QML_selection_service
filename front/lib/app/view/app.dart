@@ -9,8 +9,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AppBloc>.value(
-      value: getIt<AppBloc>(),
+    return BlocProvider<AppBloc>(
+      create: (_) => getIt<AppBloc>(),
       child: BlocListener<AppBloc, AppState>(
         listener: (context, state) {
           if (state.isVerified) {
