@@ -4,11 +4,14 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
+import '../../../app/bloc/app_bloc.dart';
+
 class PriceListForm extends StatefulWidget {
-  const PriceListForm({super.key});
+  const PriceListForm({Key? key}) : super(key: key);
 
   @override
   _PriceListFormState createState() => _PriceListFormState();
@@ -29,7 +32,7 @@ class _PriceListFormState extends State<PriceListForm> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _Instruction1(
-                onTap: () {
+                onTap1: () {
                   setState(() {
                     selectedInstruction = 'Example 1';
                   });
@@ -37,7 +40,7 @@ class _PriceListFormState extends State<PriceListForm> {
                 isSelected: selectedInstruction == 'Example 1',
               ),
               _Instruction2(
-                onTap: () {
+                onTap2: () {
                   setState(() {
                     selectedInstruction = 'Example 2';
                   });
@@ -49,7 +52,12 @@ class _PriceListFormState extends State<PriceListForm> {
           const SizedBox(
             height: 50,
           ),
-          _ImportButton(isEnabled: selectedInstruction.isNotEmpty, text: selectedInstruction.isEmpty ? 'Confirm selection' : '$selectedInstruction selected'),
+          _ImportButton(
+            isEnabled: selectedInstruction.isNotEmpty,
+            text: selectedInstruction.isEmpty
+                ? 'Confirm selection'
+                : '$selectedInstruction selected',
+          ),
         ],
       ),
     );
@@ -57,15 +65,17 @@ class _PriceListFormState extends State<PriceListForm> {
 }
 
 class _Instruction1 extends StatelessWidget {
-  final VoidCallback onTap;
   final bool isSelected;
+  final VoidCallback onTap1;
 
-  const _Instruction1({required this.onTap, required this.isSelected});
+  const _Instruction1(
+      {required this.isSelected, required this.onTap1, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap1,
       child: Container(
         width: 500,
         height: 500,
@@ -93,15 +103,17 @@ class _Instruction1 extends StatelessWidget {
 }
 
 class _Instruction2 extends StatelessWidget {
-  final VoidCallback onTap;
   final bool isSelected;
+  final VoidCallback onTap2;
 
-  const _Instruction2({required this.onTap, required this.isSelected});
+  const _Instruction2(
+      {required this.isSelected, required this.onTap2, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap2,
       child: Container(
         width: 500,
         height: 500,
@@ -132,19 +144,25 @@ class _ImportButton extends StatelessWidget {
   final bool isEnabled;
   final String text;
 
-  const _ImportButton({required this.isEnabled, required this.text});
+  const _ImportButton({required this.isEnabled, required this.text, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
-        backgroundColor: MaterialStateProperty.all<Color>(isEnabled ? Colors.blue : Colors.grey),
+        backgroundColor: MaterialStateProperty.all<Color>(
+            isEnabled ? Colors.blue : Colors.grey),
       ),
       onPressed: isEnabled
           ? () {
-        // Implement your logic here
-      }
+              if (text == 'Example 1 selected') {
+                context.read<AppBloc>().add(SetAmount(count: 3));
+              } else {
+                context.read<AppBloc>().add(SetAmount(count: 10));
+              }
+            }
           : null,
       child: Text(text),
     );

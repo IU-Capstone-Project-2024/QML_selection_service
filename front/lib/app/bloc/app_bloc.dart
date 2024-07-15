@@ -12,6 +12,9 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(const AppState()) {
     on<CreateUser>(_onCreateUser);
+    on<SetAmount>(_onSetAmount);
+    on<MakeAttempt>(_onMakeAttempt);
+    on<Logout>(_onLogout);
   }
 
   void _onCreateUser(CreateUser event, Emitter<AppState> emit) {
@@ -23,5 +26,18 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         isVerified: true,
       ),
     );
+  }
+
+  void _onSetAmount(SetAmount event, Emitter<AppState> emit) {
+    emit(state.copyWith(counter: state.counter + event.count));
+  }
+
+  void _onMakeAttempt(MakeAttempt event, Emitter<AppState> emit) {
+    emit(state.copyWith(counter: state.counter - 1));
+  }
+
+  void _onLogout(Logout event, Emitter<AppState> emit){
+
+    emit(state.copyWith(email: '', password: '',id:'',isVerified: false, counter: 0));
   }
 }
