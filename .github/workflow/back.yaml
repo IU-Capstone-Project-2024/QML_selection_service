@@ -1,0 +1,78 @@
+name: Backend
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'back/**'
+    branches:
+      - main
+      - backend
+  pull_request:
+    paths:
+      - 'back/**'
+    branches:
+      - main
+      - backend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Install dependencies
+        run: |
+          apt update -y && \
+          apt install -y \
+          openssl \
+          zip \
+          unzip \
+          git \
+          libicu-dev \
+          zlib1g-dev \
+          libzip-dev \
+          curl
+
+      - name: Install PHP
+        run: |
+          apt install -y \
+          php8.2 \
+          php8.2-cli \
+          php8.2-dev \
+          php-pear
+
+      - name: Install and tune PHP extensions
+        run: |
+          apt install -y \
+          php8.2-pdo \
+          php8.2-intl \
+          php8.2-curl \
+          php8.2-zip \
+          php8.2-xml \
+          php8.2-dom  
+          echo "extension=intl.so" | sudo tee -a /etc/php/8.2/cli/php.ini
+
+      - name: Install composer
+        run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+      - name: Build backend
+        run: composer install
+
+      - name: Run backend
+        run: php artisan serve --host=0.0.0.0 --port=8181 &
+
+      - name: Build Docker image
+        run: docker build -t backend .
+
+      - name: Run backend
+        run: docker run -it -p 8181:8181 backend
