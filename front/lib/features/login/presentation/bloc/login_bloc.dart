@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginWithEmail>(_onLoginWithEmail);
     on<LoginEmailChanged>(_onLoginEmailChanged);
     on<LoginPasswordChanged>(_onLoginPasswordChanged);
+    on<LoginInitial>(_onLoginInitial);
   }
 
   final AuthenticationRepository _authenticationRepository;
@@ -42,19 +43,42 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(state.copyWith(state: InputState.inProgress));
     try {
-      await _authenticationRepository.loginWithEmailAndPassword(
+      var uid = await _authenticationRepository.loginWithEmailAndPassword(
         email: state.email,
         password: state.password,
       );
-      emit(state.copyWith(state: InputState.successful));
+      emit(
+        state.copyWith(
+          state: InputState.successful,
+          id: uid,
+        ),
+      );
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(
           state: InputState.error,
+          errorMessage: e.message,
         ),
       );
     } catch (_) {
-      emit(state.copyWith(state: InputState.error));
+      emit(
+        state.copyWith(
+          state: InputState.error,
+          errorMessage: 'Use correct email and password',
+        ),
+      );
     }
+  }
+
+  void _onLoginInitial(
+    LoginInitial event,
+    Emitter<LoginState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        state: InputState.initial,
+        errorMessage: 'Use correct email and password',
+      ),
+    );
   }
 }

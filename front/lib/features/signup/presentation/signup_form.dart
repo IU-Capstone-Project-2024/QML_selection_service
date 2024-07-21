@@ -19,7 +19,7 @@ class SignupForm extends StatelessWidget {
         child: Container(
           height: 500,
           width: 500,
-          color: Colors.grey,
+          color: Colors.white.withOpacity(0.3),
           child: const Column(
             children: [
               SizedBox(
@@ -30,7 +30,11 @@ class SignupForm extends StatelessWidget {
                 style: TextStyle(fontSize: 60),
               ),
               SizedBox(
-                height: 90,
+                height: 45,
+              ),
+              _NameInput(),
+              SizedBox(
+                height: 30,
               ),
               _EmailInput(),
               SizedBox(
@@ -49,8 +53,34 @@ class SignupForm extends StatelessWidget {
   }
 }
 
+class _NameInput extends StatelessWidget {
+  const _NameInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupBloc, SignupState>(
+      buildWhen: (prev, curr) => prev.email != curr.email,
+      builder: (context, state) => Container(
+        width: 300,
+        decoration: const BoxDecoration(color: Colors.blue),
+        child: TextFormField(
+          onChanged: (email) => context.read<SignupBloc>().add(
+                SignupEmailChanged(email: email),
+              ),
+          autofocus: true,
+          decoration: const InputDecoration(
+            labelText: 'Name',
+            labelStyle: TextStyle(color: Colors.white),
+          ),
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+
 class _EmailInput extends StatelessWidget {
-  const _EmailInput({super.key});
+  const _EmailInput();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +106,7 @@ class _EmailInput extends StatelessWidget {
 }
 
 class _PasswordInput extends StatelessWidget {
-  const _PasswordInput({super.key});
+  const _PasswordInput();
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +132,7 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _SignupButton extends StatelessWidget {
-  const _SignupButton({super.key});
+  const _SignupButton();
 
   @override
   Widget build(BuildContext context) {

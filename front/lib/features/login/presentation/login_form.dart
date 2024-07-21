@@ -18,16 +18,25 @@ class LoginForm extends StatelessWidget {
                 CreateUser(
                   email: state.email,
                   password: state.password,
-                  id: '',
+                  id: state.id,
                 ),
               );
+        } else if (state.state == InputState.error) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage),
+              ),
+            );
+          context.read<LoginBloc>().add(LoginInitial());
         }
       },
       child: Center(
         child: Container(
           height: 500,
           width: 500,
-          color: Colors.grey,
+          color: Colors.white.withOpacity(0.3),
           child: const Column(
             children: [
               SizedBox(
@@ -67,7 +76,7 @@ class LoginForm extends StatelessWidget {
 }
 
 class _EmailInput extends StatelessWidget {
-  const _EmailInput({super.key});
+  const _EmailInput();
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +101,7 @@ class _EmailInput extends StatelessWidget {
 }
 
 class _PasswordInput extends StatelessWidget {
-  const _PasswordInput({super.key});
+  const _PasswordInput();
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +127,7 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _EnterButton extends StatelessWidget {
-  const _EnterButton({super.key});
+  const _EnterButton();
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +158,7 @@ class _EnterButton extends StatelessWidget {
 }
 
 class _SignupButton extends StatelessWidget {
-  const _SignupButton({super.key});
+  const _SignupButton();
 
   @override
   Widget build(BuildContext context) {

@@ -13,3 +13,5 @@ class LoginPasswordChanged extends LoginEvent {
 }
 
 class LoginWithEmail extends LoginEvent {}
+
+class LoginInitial extends LoginEvent {}

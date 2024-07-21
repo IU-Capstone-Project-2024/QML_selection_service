@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:front/core/routing/navigation.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../core/di/locator.dart';
 import '../../core/routing/app_router.dart';
 import '../bloc/app_bloc.dart';
@@ -14,12 +11,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AppBloc>(
-      create: (_) => getIt<AppBloc>(),
+    return BlocProvider<AppBloc>.value(
+      value: getIt<AppBloc>(),
       child: BlocListener<AppBloc, AppState>(
         listener: (context, state) {
           if (state.isVerified) {
-            AppRouter.router.go('/home');
+            context.read<AppBloc>().add(AmountOfReports());
+            AppRouter.router.go('/home/${state.id}');
+            Timer.periodic(Duration(seconds: 25), (Timer timer) {
+              context.read<AppBloc>().add(AmountOfReports());
+            });
           } else {
             AppRouter.router.go('/login');
           }

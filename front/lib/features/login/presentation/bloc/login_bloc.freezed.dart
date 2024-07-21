@@ -19,6 +19,8 @@ mixin _$LoginState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   InputState get state => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -31,7 +33,12 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({String email, String password, InputState state});
+  $Res call(
+      {String email,
+      String password,
+      InputState state,
+      String errorMessage,
+      String id});
 }
 
 /// @nodoc
@@ -50,6 +57,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? email = null,
     Object? password = null,
     Object? state = null,
+    Object? errorMessage = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -64,6 +73,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as InputState,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -76,7 +93,12 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, InputState state});
+  $Res call(
+      {String email,
+      String password,
+      InputState state,
+      String errorMessage,
+      String id});
 }
 
 /// @nodoc
@@ -93,6 +115,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? state = null,
+    Object? errorMessage = null,
+    Object? id = null,
   }) {
     return _then(_$LoginStateImpl(
       email: null == email
@@ -107,6 +131,14 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as InputState,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -115,7 +147,11 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
-      {this.email = '', this.password = '', this.state = InputState.initial});
+      {this.email = '',
+      this.password = '',
+      this.state = InputState.initial,
+      this.errorMessage = 'Use correct email and password',
+      this.id = ''});
 
   @override
   @JsonKey()
@@ -126,10 +162,16 @@ class _$LoginStateImpl implements _LoginState {
   @override
   @JsonKey()
   final InputState state;
+  @override
+  @JsonKey()
+  final String errorMessage;
+  @override
+  @JsonKey()
+  final String id;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, state: $state)';
+    return 'LoginState(email: $email, password: $password, state: $state, errorMessage: $errorMessage, id: $id)';
   }
 
   @override
@@ -140,11 +182,15 @@ class _$LoginStateImpl implements _LoginState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, state);
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, state, errorMessage, id);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +203,9 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final String email,
       final String password,
-      final InputState state}) = _$LoginStateImpl;
+      final InputState state,
+      final String errorMessage,
+      final String id}) = _$LoginStateImpl;
 
   @override
   String get email;
@@ -165,6 +213,10 @@ abstract class _LoginState implements LoginState {
   String get password;
   @override
   InputState get state;
+  @override
+  String get errorMessage;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

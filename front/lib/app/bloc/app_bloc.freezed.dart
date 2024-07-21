@@ -20,6 +20,9 @@ mixin _$AppState {
   String get password => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
+  int get counter => throw _privateConstructorUsedError;
+  List<Report> get reports => throw _privateConstructorUsedError;
+  InputState get state => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -31,7 +34,14 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({String email, String password, String id, bool isVerified});
+  $Res call(
+      {String email,
+      String password,
+      String id,
+      bool isVerified,
+      int counter,
+      List<Report> reports,
+      InputState state});
 }
 
 /// @nodoc
@@ -51,6 +61,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? password = null,
     Object? id = null,
     Object? isVerified = null,
+    Object? counter = null,
+    Object? reports = null,
+    Object? state = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -69,6 +82,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
+      reports: null == reports
+          ? _value.reports
+          : reports // ignore: cast_nullable_to_non_nullable
+              as List<Report>,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as InputState,
     ) as $Val);
   }
 }
@@ -81,7 +106,14 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, String id, bool isVerified});
+  $Res call(
+      {String email,
+      String password,
+      String id,
+      bool isVerified,
+      int counter,
+      List<Report> reports,
+      InputState state});
 }
 
 /// @nodoc
@@ -99,6 +131,9 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? id = null,
     Object? isVerified = null,
+    Object? counter = null,
+    Object? reports = null,
+    Object? state = null,
   }) {
     return _then(_$AppStateImpl(
       email: null == email
@@ -117,18 +152,34 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
+      reports: null == reports
+          ? _value._reports
+          : reports // ignore: cast_nullable_to_non_nullable
+              as List<Report>,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as InputState,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AppStateImpl implements _AppState {
+class _$AppStateImpl with DiagnosticableTreeMixin implements _AppState {
   const _$AppStateImpl(
       {this.email = '',
       this.password = '',
       this.id = '',
-      this.isVerified = false});
+      this.isVerified = false,
+      this.counter = 0,
+      final List<Report> reports = const <Report>[],
+      this.state = InputState.initial})
+      : _reports = reports;
 
   @override
   @JsonKey()
@@ -142,10 +193,39 @@ class _$AppStateImpl implements _AppState {
   @override
   @JsonKey()
   final bool isVerified;
+  @override
+  @JsonKey()
+  final int counter;
+  final List<Report> _reports;
+  @override
+  @JsonKey()
+  List<Report> get reports {
+    if (_reports is EqualUnmodifiableListView) return _reports;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_reports);
+  }
 
   @override
-  String toString() {
-    return 'AppState(email: $email, password: $password, id: $id, isVerified: $isVerified)';
+  @JsonKey()
+  final InputState state;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AppState(email: $email, password: $password, id: $id, isVerified: $isVerified, counter: $counter, reports: $reports, state: $state)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AppState'))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('isVerified', isVerified))
+      ..add(DiagnosticsProperty('counter', counter))
+      ..add(DiagnosticsProperty('reports', reports))
+      ..add(DiagnosticsProperty('state', state));
   }
 
   @override
@@ -158,11 +238,15 @@ class _$AppStateImpl implements _AppState {
                 other.password == password) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.isVerified, isVerified) ||
-                other.isVerified == isVerified));
+                other.isVerified == isVerified) &&
+            (identical(other.counter, counter) || other.counter == counter) &&
+            const DeepCollectionEquality().equals(other._reports, _reports) &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, id, isVerified);
+  int get hashCode => Object.hash(runtimeType, email, password, id, isVerified,
+      counter, const DeepCollectionEquality().hash(_reports), state);
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +260,10 @@ abstract class _AppState implements AppState {
       {final String email,
       final String password,
       final String id,
-      final bool isVerified}) = _$AppStateImpl;
+      final bool isVerified,
+      final int counter,
+      final List<Report> reports,
+      final InputState state}) = _$AppStateImpl;
 
   @override
   String get email;
@@ -186,6 +273,12 @@ abstract class _AppState implements AppState {
   String get id;
   @override
   bool get isVerified;
+  @override
+  int get counter;
+  @override
+  List<Report> get reports;
+  @override
+  InputState get state;
   @override
   @JsonKey(ignore: true)
   _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>

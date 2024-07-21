@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
-
 import 'package:front/common/enums/state.dart';
 
 import 'package:front/features/authentication/domain/repository/repository.dart';
