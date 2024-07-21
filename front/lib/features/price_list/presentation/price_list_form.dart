@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 import '../../../app/bloc/app_bloc.dart';
+import '../../../core/di/locator.dart';
 
 class PriceListForm extends StatefulWidget {
   const PriceListForm({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class _Instruction1 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Example 1',
+                '3 attempts for 90\$',
                 style: TextStyle(fontSize: 30),
               ),
             ],
@@ -129,7 +130,7 @@ class _Instruction2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Example 2',
+                '6 Attempts for 180\$',
                 style: TextStyle(fontSize: 30),
               ),
             ],
@@ -149,22 +150,25 @@ class _ImportButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
-        backgroundColor: MaterialStateProperty.all<Color>(
-            isEnabled ? Colors.blue : Colors.grey),
-      ),
-      onPressed: isEnabled
-          ? () {
-              if (text == 'Example 1 selected') {
-                context.read<AppBloc>().add(SetAmount(count: 3));
-              } else {
-                context.read<AppBloc>().add(SetAmount(count: 10));
+    return BlocProvider<AppBloc>.value(
+      value: getIt<AppBloc>(),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
+          backgroundColor: MaterialStateProperty.all<Color>(
+              isEnabled ? Colors.blue : Colors.grey),
+        ),
+        onPressed: isEnabled
+            ? () {
+                if (text == 'Example 1 selected') {
+                  context.read<AppBloc>().add(BuyReports(amount: 3));
+                } else {
+                  context.read<AppBloc>().add(BuyReports(amount: 6));
+                }
               }
-            }
-          : null,
-      child: Text(text),
+            : null,
+        child: Text(text == 'Example 1 selected' ? '90\$' : '180\$'),
+      ),
     );
   }
 }

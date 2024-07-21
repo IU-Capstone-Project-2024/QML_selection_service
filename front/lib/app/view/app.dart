@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/di/locator.dart';
@@ -14,7 +16,11 @@ class App extends StatelessWidget {
       child: BlocListener<AppBloc, AppState>(
         listener: (context, state) {
           if (state.isVerified) {
+            context.read<AppBloc>().add(AmountOfReports());
             AppRouter.router.go('/home/${state.id}');
+            Timer.periodic(Duration(seconds: 25), (Timer timer) {
+              context.read<AppBloc>().add(AmountOfReports());
+            });
           } else {
             AppRouter.router.go('/login');
           }

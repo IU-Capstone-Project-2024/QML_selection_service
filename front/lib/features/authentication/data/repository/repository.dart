@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:http/http.dart' as http;
@@ -11,11 +9,7 @@ import '../../domain/repository/repository.dart';
 
 @Singleton(as: AuthenticationRepository)
 class FirebaseAuthenticationRepository implements AuthenticationRepository {
-  FirebaseAuthenticationRepository({
-    required firebase_auth.FirebaseAuth firebaseAuth,
-  }) : _firebaseAuth = firebaseAuth;
-
-  final firebase_auth.FirebaseAuth _firebaseAuth;
+  FirebaseAuthenticationRepository();
 
   @override
   Future<void> signUp({required String email, required String password}) async {
@@ -87,9 +81,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   @override
   Future<void> logOut() async {
     try {
-      await Future.wait([
-        _firebaseAuth.signOut(),
-      ]);
+      await Future.wait([]);
     } catch (_) {
       throw const FirebaseAuthFailure();
     }

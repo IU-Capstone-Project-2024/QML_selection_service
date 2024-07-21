@@ -70,7 +70,6 @@ class _ImportButton extends StatelessWidget {
 
       if (fileBytes != null && fileName != null) {
         // For web
-        await uploadFile(fileBytes, fileName, id);
         if (kDebugMode) {
           print('File picked: $fileName');
         }
@@ -78,7 +77,7 @@ class _ImportButton extends StatelessWidget {
         // For mobile and desktop
         io.File file = io.File(platformFile.path!);
         Uint8List fileBytes = await file.readAsBytes();
-        await uploadFile(fileBytes, fileName ?? 'upload.csv', id);
+
         if (kDebugMode) {
           print('File picked: ${platformFile.path}');
         }
@@ -94,55 +93,40 @@ class _ImportButton extends StatelessWidget {
     }
   }
 
-  Future<void> uploadFile(
-      Uint8List fileBytes, String fileName, String id) async {
-    var uri = Uri.parse('http://localhost:8181/api/uploadCsv');
-
-    var request = http.MultipartRequest('POST', uri);
-
-    var multipartFile =
-        http.MultipartFile.fromBytes('file', fileBytes, filename: fileName);
-    request.files.add(multipartFile);
-    var headers = {
-      'Authorization': 'Bearer $id',
-    };
-    request.headers.addAll(headers);
-
-    try {
-      var response = await request.send();
-
-      if (response.statusCode == 200) {
-        if (kDebugMode) {
-          print('File uploaded successfully');
-        }
-      } else {
-        if (kDebugMode) {
-          print('File upload failed with status: ${response.statusCode}');
-        }
-      }
-    } catch (e) {
-      // Handle any exceptions that occur during the request
-      if (kDebugMode) {
-        print('Exception during file upload: $e');
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppBloc, AppState>(builder: (context, state) {
-      String id = state.id;
+    return BlocBuilder<AppBloc, AppState>(builder: (context, appState) {
+      String id = appState.id;
+      var counter = appState.counter;
       return BlocBuilder<DemoBloc, DemoState>(
-        builder: (context, state) => ElevatedButton(
+        builder: (context, demoState) => ElevatedButton(
           style: ButtonStyle(
             minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
+            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Colors.grey; // Цвет заблокированной кнопки
+                }
+                return Colors.blue; // Цвет активной кнопки
+              },
+            ),
+            foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Colors.black38; // Цвет текста заблокированной кнопки
+                }
+                return Colors.white; // Цвет текста активной кнопки
+              },
+            ),
           ),
-          onPressed: () async {
-            await pickAndUploadFile(id);
-            context.read<DemoBloc>().add(AddPath(file: file!));
-            context.read<DemoBloc>().add(ChooseTarget());
-          },
-          child: const Text('Import data'),
+          onPressed: counter == 0
+              ? null
+              : () async {
+                  await pickAndUploadFile(id);
+                  context.read<DemoBloc>().add(AddPath(file: file!));
+                  context.read<DemoBloc>().add(ChooseTarget());
+                },
+          child: Text(counter == 0 ? 'Buy more attempts' : 'Import data'),
         ),
       );
     });

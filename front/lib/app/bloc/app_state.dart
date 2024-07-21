@@ -8,5 +8,7 @@ class AppState with _$AppState {
     @Default('') String id,
     @Default(false) bool isVerified,
     @Default(0) int counter,
+    @Default(<Report>[]) List<Report> reports,
+    @Default(InputState.initial) InputState state,
   }) = _AppState;
 }

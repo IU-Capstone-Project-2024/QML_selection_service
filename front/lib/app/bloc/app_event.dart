@@ -22,4 +22,31 @@ class SetAmount extends AppEvent {
 }
 
 class MakeAttempt extends AppEvent {}
-class Logout extends AppEvent{}
+
+class Logout extends AppEvent {}
+
+class DownloadReports extends AppEvent {
+  final String token;
+
+  DownloadReports({required this.token});
+}
+
+class AddReport extends AppEvent {
+  final Report report;
+
+  AddReport({required this.report});
+}
+
+class DeleteReport extends AppEvent {
+  final String url;
+  DeleteReport({required this.url});
+}
+
+class AmountOfReports extends AppEvent {}
+
+class MinusAttempt extends AppEvent {}
+
+class BuyReports extends AppEvent {
+  final int amount;
+  BuyReports({required this.amount});
+}
