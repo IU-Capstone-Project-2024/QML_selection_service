@@ -1,7 +1,7 @@
 # Uncomment for deploy on B. A. machine
-# version: '3.3'
+version: '3.3'
 # Comment for deploy on B. A. machine
-version: '3.8'
+# version: '3.8'
 
 services:
   flutter-service:
@@ -20,7 +20,7 @@ services:
       context: ./back
       dockerfile: ./Dockerfile
     ports:
-      - "127.0.0.1:8181:8181"
+      - "8181:8181"
     networks:
       - back-network
       - front-network
@@ -32,12 +32,10 @@ services:
       context: ./back/quantum
       dockerfile: ./dockerfile
     ports:
-      - "127.0.0.1:8000:8000"
+      - "8000:8000"
     networks:
       - back-network
 
 networks:
   back-network:
-    driver: bridge
-    internal: true
   front-network:
