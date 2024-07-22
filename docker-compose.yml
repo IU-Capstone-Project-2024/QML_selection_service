@@ -1,3 +1,6 @@
+# Uncomment for deploy on B. A. machine
+# version: '3.3'
+# Comment for deploy on B. A. machine
 version: '3.8'
 
 services:
