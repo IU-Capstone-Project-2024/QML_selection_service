@@ -140,6 +140,7 @@ class _SignupButton extends StatelessWidget {
       builder: (context, state) => ElevatedButton(
         onPressed: () {
           context.read<SignupBloc>().add(Registration());
+          context.goToLoginPage();
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.lightGreenAccent,
