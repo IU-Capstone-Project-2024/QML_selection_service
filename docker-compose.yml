@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  flutter-service:
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - front-network
+    depends_on:
+      - php-service
+
+  php-service:
+    build:
+      context: ./back
+      dockerfile: ./Dockerfile
+    ports:
+      - "8181:8181"
+    networks:
+      - back-network
+      - front-network
+    depends_on:
+      - python-service
+
+  python-service:
+    build:
+      context: ./back/quantum
+      dockerfile: ./dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - back-network
+
+networks:
+  back-network:
+    driver: bridge
+    internal: true
+  front-network:
