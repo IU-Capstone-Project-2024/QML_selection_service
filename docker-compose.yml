@@ -17,7 +17,7 @@ services:
       context: ./back
       dockerfile: ./Dockerfile
     ports:
-      - "8181:8181"
+      - "127.0.0.1:8181:8181"
     networks:
       - back-network
       - front-network
@@ -29,7 +29,7 @@ services:
       context: ./back/quantum
       dockerfile: ./dockerfile
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     networks:
       - back-network
 
