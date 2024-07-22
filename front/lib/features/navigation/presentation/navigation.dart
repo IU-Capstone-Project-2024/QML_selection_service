@@ -37,7 +37,7 @@ class NavigationState extends State<Navigation>
   }
 
   Future<void> handleLogout(BuildContext context, String id) async {
-    final Uri url = Uri.parse('http://158160.103.114:8181/api/auth/logout');
+    final Uri url = Uri.parse('http://158.160.103.114:8181/api/auth/logout');
 
     try {
       // Dispatch the logout event to the AppBloc
