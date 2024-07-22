@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeForm extends StatelessWidget {
@@ -19,7 +20,7 @@ class HomeForm extends StatelessWidget {
           ),
           const Text(
             'Read the instruction and try our app',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           const SizedBox(
             height: 20,
@@ -39,13 +40,26 @@ class _Description extends StatelessWidget {
     return Container(
       width: 500,
       height: 500,
-      color: Colors.white.withOpacity(0.3),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.4),
+        border: Border.all(
+          color: Colors.blue, // Border color
+          width: 2.0, // Border width
+        ),
+      ),
       child: const Center(
         child: Column(
           children: [
             Text(
               'Description',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 32, color: Colors.white),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                'Welcome to Quantum Feature Selection Service (QFSS), a pioneering web-based platform designed for feature selection in machine learning classification datasets utilizing the advanced capabilities of quantum annealing. QFS harnesses the power of quantum computing to enhance the accuracy and efficiency of your machine learning models by identifying the most relevant features in your dataset.',
+                style: TextStyle(fontSize: 26, color: Colors.white),
+              ),
             )
           ],
         ),
@@ -63,7 +77,7 @@ class _TryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all<Size>(const Size(200, 50)),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
       ),
       onPressed: () {
         moveToThirdTab();
