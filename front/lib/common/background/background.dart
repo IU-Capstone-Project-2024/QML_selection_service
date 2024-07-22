@@ -9,10 +9,19 @@ class GradientBackground extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: SvgPicture.asset(
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF0000FF), Color(0xFFFF0000)],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+          ),
+        ),
+      ),
+      /**SvgPicture.asset(
         'assets/background.svg',
         fit: BoxFit.cover,
-      ),
+      ),*/
     );
   }
 }
