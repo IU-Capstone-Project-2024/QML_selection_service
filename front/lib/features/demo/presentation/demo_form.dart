@@ -48,65 +48,77 @@ class _Instruction extends StatelessWidget {
             Center(
               child: Text(
                 'Instruction',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
             SizedBox(height: 10),
             Text(
               '1. Data Requirements',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 5),
             Text(
               '● File Format: Your dataset should be in CSV (Comma-Separated Values) format.\n'
-              '● Data Type: All data should be numerical. Ensure that any categorical data has been appropriately encoded into numerical values prior to upload.\n'
-              '● Target Column: The target column (the variable you want to predict) should be clearly specified and must also contain numerical values.',
-              style: TextStyle(fontSize: 18),
+                  '● Data Type: All data should be numerical. Ensure that any categorical data has been appropriately encoded into numerical values prior to upload.\n'
+                  '● Target Column: The target column (the variable you want to predict) should be clearly specified and must also contain numerical values.',
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 10),
             Text(
               '2. Preparing Your Dataset',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 5),
             Text(
               '● Ensure Data Consistency: Verify that all columns contain numerical data and that there are no missing values. Any preprocessing such as normalization, standardization, or handling of missing values should be performed before uploading the dataset.\n'
-              '● Specify the Target Column: Clearly identify the target column in your dataset. This column should be distinct from the feature columns.',
-              style: TextStyle(fontSize: 18),
+                  '● Specify the Target Column: Clearly identify the target column in your dataset. This column should be distinct from the feature columns.',
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 10),
             Text(
               '3. Uploading Your Dataset',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 5),
             Text(
               '● Navigate to the Upload Section: Access the upload section of the Quantum Feature Selector platform.\n'
-              '● Select Your CSV File: Use the provided file selector to upload your prepared CSV file.\n'
-              '● Specify the Target Column: Indicate which column is your target variable during the upload process.',
-              style: TextStyle(fontSize: 18),
+                  '● Select Your CSV File: Use the provided file selector to upload your prepared CSV file.\n'
+                  '● Specify the Target Column: Indicate which column is your target variable during the upload process.',
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 10),
             Text(
               '4. Running Quantum Feature Selection',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 5),
             Text(
               '● Initiate Feature Selection: Once the dataset is uploaded and the target column is specified, initiate the feature selection process.\n'
-              '● Quantum Annealing Processing: The platform will leverage quantum annealing algorithms to evaluate and select the most relevant features from your dataset.\n'
-              '● Review Results: After the quantum processing is complete, the selected features will be presented, highlighting those that contribute most significantly to the predictive power of your machine learning model.',
-              style: TextStyle(fontSize: 18),
+                  '● Quantum Annealing Processing: The platform will leverage quantum annealing algorithms to evaluate and select the most relevant features from your dataset.\n'
+                  '● Review Results: After the quantum processing is complete, the selected features will be presented, highlighting those that contribute most significantly to the predictive power of your machine learning model.',
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 10),
             Text(
               '5. Downloading Selected Features',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 5),
             Text(
               '● Export Results: You can download the list of selected features and the transformed dataset for further analysis and use in your machine learning models.',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ],
         ),
