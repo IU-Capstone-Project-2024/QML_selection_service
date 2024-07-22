@@ -63,7 +63,7 @@ class DemoBloc extends Bloc<DemoEvent, DemoState> {
       last: false,
       prev: true,
     ));
-    var uri = Uri.parse('http://localhost:8181/api/uploadCsv');
+    var uri = Uri.parse('http://158160.103.114:8181/api/uploadCsv');
 
     var request = http.MultipartRequest('POST', uri);
 

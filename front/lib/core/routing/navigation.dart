@@ -12,7 +12,7 @@ extension NavigationManager on BuildContext {
   }
 
   static void goToTheReportPage(String path) {
-    final url = 'http://localhost:8181$path';
+    final url = 'http://158160.103.114:8181$path';
     html.window.open(url, '_blank');
   }
 

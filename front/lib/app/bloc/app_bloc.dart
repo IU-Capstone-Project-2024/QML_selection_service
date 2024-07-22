@@ -32,7 +32,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> _onBuyReports(BuyReports event, Emitter<AppState> emit) async {
-    final url = 'http://localhost:8181/api/payment/checkout';
+    final url = 'http://158160.103.114:8181/api/payment/checkout';
     final headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -70,7 +70,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onGetAmountOfReports(AppEvent event, Emitter<AppState> emit) async {
-    final url = 'http://localhost:8181/api/user';
+    final url = 'http://158160.103.114:8181/api/user';
     final headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -99,7 +99,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void _onDeleteReport(DeleteReport event, Emitter<AppState> emit) async {
     emit(state.copyWith(state: InputState.initial));
-    final url = 'http://localhost:8181/api/delete';
+    final url = 'http://158160.103.114:8181/api/delete';
     final headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -170,7 +170,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onDownloadReports(DownloadReports event, Emitter<AppState> emit) async {
-    final url = 'http://localhost:8181/api/getAllFiles';
+    final url = 'http://158160.103.114:8181/api/getAllFiles';
     final headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",

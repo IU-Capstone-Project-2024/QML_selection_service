@@ -13,7 +13,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
 
   @override
   Future<void> signUp({required String email, required String password}) async {
-    final Uri url = Uri.parse('http://localhost:8181/api/auth/register');
+    final Uri url = Uri.parse('http://158160.103.114:8181/api/auth/register');
 
     try {
       final response = await http.post(
@@ -50,7 +50,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    final Uri url = Uri.parse('http://localhost:8181/api/auth/login');
+    final Uri url = Uri.parse('http://158160.103.114:8181/api/auth/login');
 
     try {
       final response = await http.post(
